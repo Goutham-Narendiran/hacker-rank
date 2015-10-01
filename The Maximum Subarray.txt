@@ -1,0 +1,66 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException{
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int testcases = Integer.parseInt(br.readLine().trim());
+	int ele,res1,res2,sum,largestNeg;
+	ArrayList<Integer> input;
+	
+	while(testcases-->0){
+		
+		boolean allNeg = true;
+		largestNeg = Integer.MIN_VALUE;
+		res1=Integer.MIN_VALUE;
+		res2=0;
+		sum=0;
+		input = new ArrayList<>();
+		ele = Integer.parseInt(br.readLine().trim());
+		String [] temp = br.readLine().split(" ");
+		for(String ip : temp){
+			input.add(Integer.parseInt(ip));
+		}
+		
+		for(int i = 0; i < input.size();i++){
+			
+			
+			if(input.get(i)>largestNeg)
+				largestNeg = input.get(i);
+			
+			
+			sum = sum + input.get(i);
+			
+			if(input.get(i)>0){
+				res2 = res2 + input.get(i);
+				allNeg = false;
+			}
+			
+			if(sum > 0)
+			{
+				res1 = sum > res1 ? sum : res1;
+			}
+			
+			else{
+			   
+			   sum = 0;
+			}	
+			
+		}
+		
+		if(!allNeg)
+		System.out.println(res1+" "+res2);
+		
+		else
+		System.out.println(largestNeg+" "+largestNeg);	
+			
+	}
+	
+
+    }
+}

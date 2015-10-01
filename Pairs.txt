@@ -1,0 +1,37 @@
+/*
+ Enter your code here. Read input from STDIN. Print output to STDOUT
+ Your class should be named Solution
+*/
+import java.util.*;
+class Solution
+{
+  public static void main(String args[])
+  {
+      int N,K,i,j,count=0;
+      Scanner kb=new Scanner(System.in);
+      N=kb.nextInt();
+      K=kb.nextInt();
+      int arr[]=new int[N];
+      for(i=0;i<N;i++)
+      {
+          arr[i]=kb.nextInt();
+      }
+      Arrays.sort(arr);
+       
+      for(i=0;i<N-1;i++)
+      {
+          arr[i]=arr[i]+K;
+          for(j=i+1;j<N;j++)
+          {
+              if(arr[i]==arr[j])
+              {
+                  count++;
+                  break;
+              }
+          }
+      }
+      
+      System.out.println(count);
+      
+  }
+}

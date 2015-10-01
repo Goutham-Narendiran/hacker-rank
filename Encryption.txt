@@ -1,0 +1,53 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String inp = br.readLine();
+        double L = Math.sqrt(inp.length());
+        int ul = (int)Math.floor(L);
+        int ll = (int)Math.ceil(L);
+        int r,c;
+        r = c = ul;
+        while(r*c < inp.length()){
+            if(c <= ul && r*c < inp.length())
+                c++;
+            if(r<=c && r*c < inp.length())
+                r++;
+        }
+        
+       // System.out.println("L: "+inp.length()+" r: "+r+" c: "+c);
+        char arr[][] = new char[r][c];
+        
+        int k=0;
+        for(int i=0;i<r;i++)
+            for(int j=0;j<c;j++){
+             if(k<inp.length())
+            arr[i][j] = inp.charAt(k++);
+        }
+        
+         for(int i=0;i<c;i++)
+         { for(int j=0;j<r;j++){
+             if(arr[j][i]!='\0')
+             System.out.print(arr[j][i]);
+             
+         }
+             System.out.print(" ");
+         }
+         
+        
+        }
+        
+    }

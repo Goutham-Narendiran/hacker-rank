@@ -1,0 +1,52 @@
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+#include"iostream"
+#include"cmath"
+using namespace std;
+unsigned long fact(unsigned long);
+
+unsigned long fact(unsigned long num)
+{
+unsigned long fact=1,i;
+for(i=1;i<=num;i++)
+fact=fact*i;
+return fact;
+}
+int main()
+{
+int test,i,j=0;
+unsigned long count,factorial;
+cin>>test;
+unsigned long* n=new unsigned long[test];
+unsigned long* p=new unsigned long[test];
+for(i=0;i<test;i++)
+{
+    cin>>n[i];
+
+    cin>>p[i];
+}
+
+while(j<test)
+{
+count=0;
+for(i=0;i<=floor(sqrt(n[j]));i++)
+{
+   factorial=(fact(n[j])/(fact(n[j]-i)*fact(i)));
+   if(factorial%p[j]==0&&i!=floor(sqrt(n[j])))
+   {
+
+	count+=2;
+   }
+   if(factorial%p[j]==0&&i==floor(sqrt(n[j])))
+   {
+   if((n[j]+1)%2==0)
+   count+=2;
+   else
+   count++;
+   }
+
+}
+cout<<count<<endl;
+j++;
+}
+return 0;
+}

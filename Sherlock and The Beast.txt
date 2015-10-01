@@ -1,0 +1,59 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Eq
+    {
+    long x;//no of 5 = 5*x
+    long y;//no of 3 = 3*y
+    long N;
+};
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    int T;
+    long N;
+    Eq eq;
+    cin>>T;
+    
+    while(T--)
+        {
+        bool flag=false;
+        int temp;
+        cin>>eq.N;
+      //  cout<<"@@@"<<eq.N;
+        if(eq.N<3)
+        {
+            cout<<-1<<endl;
+            
+            continue;
+        }
+        
+        for(long i=0;eq.N-5*i>=0;i++)
+            {
+            temp = (eq.N-5*i)%3;
+            if(temp==0)
+                {
+                eq.x=i;
+                eq.y=(eq.N-5*i)/3;
+                flag=true;
+                break;
+            }
+        }
+        if(flag==true){
+            int a=5*eq.x;
+            int b=3*eq.y;
+            while(b--)
+            cout<<5;
+            while(a--)
+            cout<<3;
+            
+        }
+        else
+            cout<<-1;
+        cout<<endl;
+    }
+    return 0;
+}

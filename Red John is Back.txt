@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	int testcases = Integer.parseInt(br.readLine());
+	ArrayList<Integer> input = new ArrayList<>();
+	
+	
+	while(testcases-->0){
+		input.add(Integer.parseInt(br.readLine()));
+	}
+	
+	int []sol = new int[40];
+	sol[0]=sol[1]=sol[2] = 1;
+	sol[3] = 2;
+	for(int i=4;i<40;i++)
+		sol[i] = sol[i-1]+sol[i-4];
+	
+	boolean[] prime = new boolean [217287];
+	
+	prime[0] = false;
+	prime[1] = false;
+			
+	for(int i= 2; i< prime.length;i++){
+		prime[i] = true;
+	}
+	
+	
+	for(int i=2;i*i<prime.length;i++)
+	{
+		if(prime[i]== false)
+			continue;
+	
+		for(int j = i;i*j<prime.length;j++)
+			prime[i*j] = false;
+		
+	}
+	
+	int no_ways,p=0;
+	for(int ip : input){
+		
+		no_ways = sol[ip-1];
+		p=0;
+		for(int k = 2;k<=no_ways;k++){
+			if(prime[k]!= false)
+	     p++;
+		}
+	System.out.println(p);
+			
+	}
+	
+    }
+}

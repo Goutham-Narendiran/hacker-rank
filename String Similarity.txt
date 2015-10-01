@@ -1,0 +1,38 @@
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+#include<stdio.h>
+#include<malloc.h>
+int main()
+{
+     int T,i,k,j,count,tempo;
+     char arr[100000];
+     scanf("%d",&T);
+     tempo=T;
+     long *ans=(long*)malloc(T*sizeof(long));
+     while(T>0)
+     {
+         count=0;
+         scanf("%s",arr);
+         k=0;
+         while(arr[k]!='\0')
+         {
+              for(i=k,j=0;arr[i]!='\0';i++,j++)
+              {
+                  if(arr[i]!=arr[j])
+                      break;
+                  else
+                      count++;
+                
+              }
+              k++;
+         }
+          T--;
+          ans[T]=count++;
+     }
+     
+     while(tempo>0)
+        {
+            tempo--;
+            printf("%ld\n",ans[tempo]);
+        }
+     return 0;
+}

@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException{
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	String[] input = br.readLine().split(" ");
+	int i;
+	int n = Integer.parseInt(input[2]);
+	long a = Long.parseLong(input[0]);
+	long b = Long.parseLong(input[1]);
+	
+	BigInteger[] arr = new BigInteger[20];
+	arr[0] = BigInteger.valueOf(a);
+	arr[1] = BigInteger.valueOf(b);
+	
+	for(i = 2; i < n ; i++){
+		arr[i] = arr[i-1].pow(2).add(arr[i-2]);
+	}
+	
+	System.out.println(arr[i-1]);
+	
+    }
+}

@@ -1,0 +1,126 @@
+
+import java.io.IOException;
+import java.util.*;
+
+public class Solution1 {
+
+	private Scanner kb;
+	private int size;
+	private int arr[];
+	private int p,q,r=-1;
+	
+	public boolean CheckSq1(int a,int x){
+		int i = x+1;
+
+		while(i < size&&arr[i] < arr[x]){
+			if((arr[i] > arr[i-1]))
+			{
+				return false;
+			}
+			i++;
+		}
+		p = i-1;
+		return true;
+	}
+
+	public boolean CheckSq2(int a,int x){
+		int i = x+1;
+
+		while(i < size && arr[i] < arr[x]){
+			if(arr[i] < arr[i-1] && i!=x+1){
+				if(i+1<size && arr[i+1] < arr[x])
+					return false;
+			}
+
+			i++;
+
+		}
+		q = i-1;
+		return true;
+	}
+	
+	public void Check() throws NumberFormatException, IOException{
+		kb= new Scanner(System.in);
+		size = kb.nextInt();
+		arr = new int[size];
+		boolean result = false;
+		int count =1;
+		for(int x=0 ; x < size ;x++){
+
+
+			arr[x] = kb.nextInt();
+			if(x!=0 && arr[x-1] < arr[x])
+			{
+				count++;
+
+			}
+
+		}
+
+		if(count==size){
+			System.out.println("yes");
+			return;
+		}
+
+		if(size == 2){
+			System.out.println("yes");
+			System.out.println("swap"+" "+"1"+" "+"2");
+			return;
+		}
+
+		int x;
+
+		for(x=0 ; x < size-1 ;x++){
+			if(arr[x] < arr[x+1]){
+				continue;
+			}
+
+			else if(arr[x] > arr[x+1] && r==-1){
+
+				r = x;
+				if(CheckSq1(arr[x],x))
+				{
+					x = p;
+					result = true;
+					continue;
+				}
+				else if (CheckSq2(arr[x],x)){
+					x = q;
+					
+					continue;
+				}
+
+				else
+					break;
+
+			}
+
+		}
+
+		if(x == size-1){
+			if(result == true){
+				System.out.println("yes");
+				r=r+1;
+				p=p+1;
+				System.out.println("reverse"+" "+r+" "+p);
+			}
+			else{
+				r=r+1;
+				q=q+1;
+				System.out.println("yes");
+				System.out.println("swap"+" "+r+" "+q);
+			}
+		}
+
+		else{
+			System.out.println("no");
+		}
+
+	}
+
+	public static void main(String...args) throws NumberFormatException, IOException{
+		new Solution1().Check();
+
+	}
+
+}

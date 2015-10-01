@@ -1,0 +1,65 @@
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+#include<stdio.h>
+#include<malloc.h>
+
+int main()
+{
+    long T,N,i,j,k,max,temp;
+    long *ArrN;
+    long **ArrQ,**Result;
+    
+    Result=(long**)malloc(T*sizeof(long*));
+    
+    scanf("%d",&T);
+    long Q[T];
+    
+    for(k=0;k<T;k++)
+    {
+    scanf("%d%d",&N,&Q[k]);
+    
+    ArrN=(long*)malloc(N*sizeof(long));
+    Result[k]=(long*)malloc(Q[k]*sizeof(long));
+    ArrQ=(long**)malloc(Q[k]*sizeof(long*));
+    
+     for(i=0;i<N;i++)
+     {
+         scanf("%d",&ArrN[i]);
+     }
+    
+    for(i=0;i<Q[k];i++)
+    {
+        max=0;
+        ArrQ[i]=(long*)malloc(3*sizeof(long));
+        
+        for(j=0;j<3;j++)
+        {
+            scanf("%d",&ArrQ[i][j]);
+        }
+        
+        for(j=ArrQ[i][1];j<=ArrQ[i][2];j++)
+        {
+            //prlongf("%d\n",ArrQ[i][1]-1);
+            temp=ArrQ[i][0]^ArrN[j-1];
+            if(temp>max)
+            {
+                max=temp;
+            }
+        }
+        Result[k][i]=max;
+        
+    }
+    
+    }
+    
+    for(k=0;k<T;k++)
+    {
+        for(i=0;i<Q[k];i++)
+        {
+        printf("\n");
+        printf("%d",Result[k][i]);
+        }
+    
+    }
+    
+   return 0;
+}

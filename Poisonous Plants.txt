@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+ public static void main(String[] args) throws NumberFormatException, IOException {
+	        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+	    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	    	int k = Integer.parseInt(br.readLine());
+	    	String input[] = br.readLine().split(" ");
+	    	int[] arr = new int[k];
+	    	int i=0,gcount=0,count;
+	    	for(String s : input)
+	    		arr[i++] = Integer.parseInt(s);
+	    	
+	    	Stack<Integer> stack = new Stack<>();
+	    	for(int j =k-1; j>=0; j--){
+	    		
+	    		if(stack.isEmpty() || stack.peek()<=arr[j])
+	    		stack.push(arr[j]);
+	    		
+	    		else{
+	    			count = 0;
+	    			while(stack.peek()>arr[j]){
+	    				stack.pop();
+	    				count++;
+	    				if(stack.empty())
+	    					break;
+	    			}
+	    			stack.push(arr[j]);
+	    			if(gcount<count)
+	    				gcount = count;
+	    		}
+	    	}
+	    	
+	    	System.out.println(gcount);
+	  
+}
+}

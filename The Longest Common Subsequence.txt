@@ -1,0 +1,66 @@
+import java.io.*;
+
+public class Solution {
+	
+	
+	public static int max (int a,int b){
+		return a>b?a:b;
+	}
+
+    public static void main(String[] args) throws IOException {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));    
+        String len[] = br.readLine().split(" ");
+        String arr1[] = br.readLine().split(" ");
+        String arr2[] = br.readLine().split(" ");
+        
+       int m = Integer.parseInt(len[0]);
+       int n = Integer.parseInt(len[1]);
+        
+        int L[][] = new int [m+1][n+1];
+        
+        for(int i=0;i<=m;i++)
+        {
+        	for(int j=0;j<=n;j++){
+        		if(i==0 || j==0)
+        			L[i][j] = 0;
+        		
+        		else if(Integer.parseInt(arr1[i-1]) == Integer.parseInt(arr2[j-1]))
+        			L[i][j] = 1+L[i-1][j-1];
+        		
+        		else
+        			L[i][j] = max(L[i][j-1],L[i-1][j]);
+        	}
+        }
+        
+        int []result = new int[L[m][n]];
+        
+       
+        int i = m;
+        int j= n;
+        int k = 0;
+        	while(i>0 && j>0 && k< L[m][n] )
+            {
+        		if(Integer.parseInt(arr1[i-1]) == Integer.parseInt(arr2[j-1]))
+        			{
+        			result[k++] = Integer.parseInt(arr1[i-1]);
+        			 i--;
+        			 j--;
+        			}
+        		
+        		else if(L[i-1][j] > L[i][j-1])
+        			i--;
+        		else
+        			j--;
+        			
+        	}
+        	
+        	for(int x = L[m][n]-1;x>=0;x--)
+        	{
+        		System.out.print(result[x]+" ");
+        	}
+        
+    }
+    
+    
+}

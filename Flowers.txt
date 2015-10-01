@@ -1,0 +1,50 @@
+
+import java.util.*;
+
+
+class Solution
+{
+	public static void main (String[] args) {
+
+	Scanner kb=new Scanner(System.in);
+	int N=kb.nextInt();
+	int K=kb.nextInt();
+	int F[]=new int[N];
+	int i,sum=0,counter=1;
+
+	for(i=0;i<N;i++)
+	{
+		F[i]=kb.nextInt();
+	}
+
+	Arrays.sort(F);
+
+if(N>K&&N>0)
+{
+
+   while(N>K)
+	{
+
+		for(i=N-1;i>=N-K;i--)
+		{
+		    sum=sum+counter*F[i];
+		}
+		N=N-K;
+		counter++;
+
+	}
+
+}
+
+if(N<=K&&N>0)
+{
+	for(i=N-1;i>=0;i--)
+	{
+		sum=sum+counter*F[i];
+	}
+}
+
+System.out.println(sum);
+
+}
+}

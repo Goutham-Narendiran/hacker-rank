@@ -1,0 +1,32 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+struct Date{
+    int d;
+    int m;
+    int y;
+};
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    Date dateA,dateE;
+    int fine=0;
+    cin>>dateA.d>>dateA.m>>dateA.y;
+    cin>>dateE.d>>dateE.m>>dateE.y;
+    
+    if(dateA.y!=dateE.y)
+        fine = 10000;
+    else if(dateA.m!=dateE.m)
+        {
+        fine = 500*(dateA.m- dateE.m);
+    }
+    else 
+        fine=15*(dateA.d -dateE.d);
+
+                 cout<<fine;
+
+    return 0;
+}

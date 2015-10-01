@@ -1,0 +1,72 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) throws IOException{
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        int T;
+        int R,C,r,c;
+        BufferedReader inp = new BufferedReader(new InputStreamReader(System.in));
+        T = Integer.parseInt(inp.readLine());
+        for(int i=0;i<T;i++)
+        {    //System.out.println("In loop of T");
+            String temp1 = inp.readLine();
+            String temp[]= temp1.split(" ");
+            R = Integer.parseInt(temp[0]);
+            C = Integer.parseInt(temp[1]);
+            ArrayList<String> mainList = new ArrayList<>();
+            ArrayList<String> miniList = new ArrayList<>();
+            int RR=R;
+            while(RR>0)
+            {
+            //System.out.println("In loop of R");    
+            mainList.add(inp.readLine());
+            RR--;
+            }
+            temp1= inp.readLine();
+            temp= temp1.split(" ");
+            r = Integer.parseInt(temp[0]);
+            c = Integer.parseInt(temp[1]);
+            
+            int rr=r;
+            while(rr>0)
+            {
+                //System.out.println("In loop of r ="+r);
+                miniList.add(inp.readLine());
+                rr--;
+            }
+            int index,indexprev=-1;
+           
+                int j=0;
+                for(int k=0;k<R;k++)
+                {   //System.out.println("In loop of k");
+                    String a = miniList.get(j);
+                    String b=mainList.get(k);
+                    if(((index=b.indexOf(a))>0 && indexprev==-1)||(((index=b.indexOf(a))>0)&&indexprev == index))
+                    {
+                        j++; 
+                        indexprev = index;
+                        if(j==r)
+                            break;
+                    }
+                    
+                    else{
+                        j=0;
+                        indexprev=-1;                       
+                    }
+                    
+                }
+                
+                if(j==r)
+                    System.out.println("YES");
+                else
+                      System.out.println("NO");
+            
+            
+        }
+    }
+}

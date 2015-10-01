@@ -1,0 +1,122 @@
+/*
+ Enter your code here. Read input from STDIN. Print output to STDOUT
+ Your class should be named Solution
+*/
+import java.util.*;
+class Solution
+{
+    static   boolean isPrime(int n)
+   {
+      if (n<=1) return false;
+      if (n==2) return true;
+      if (n%2==0) return false;
+      int m=(int)Math.sqrt(n);
+      for (int i=3; i<=m; i+=2)
+      {
+          if (n%i==0)
+          return false;
+      }
+
+   return true;
+
+   }
+   
+   static int  sum(String a)
+   {
+       int i,sum=0;
+       String temp;
+       Character c;
+       for(i=0;i<a.length();i++)
+       {
+         c=a.charAt(i);  
+         temp=c.toString();
+         sum=sum+Integer.parseInt(temp); 
+       }
+       return sum;
+   }
+   
+  static int square(String a)
+   {
+       int i,square=0;
+       String temp;
+       Character c;
+       for(i=0;i<a.length();i++)
+       {
+         c=a.charAt(i);  
+         temp=c.toString();
+         square=square+Integer.parseInt(temp)*Integer.parseInt(temp); 
+       }
+       return square;
+   }
+       
+   
+   public static void main(String args [])
+   {
+       
+       long A,B,i;
+       String a;
+       int sum,square,T,temp;
+       boolean chk1=false,chk2,chkprev=true;
+       Scanner kb=new Scanner(System.in);
+       temp=T=kb.nextInt();
+       long count[]=new long[T];
+       
+       
+       while(T>0){
+       A=kb.nextLong();
+       B=kb.nextLong();
+       if(A<10&&B>10)
+           A=11;
+           
+       
+       for(i=A;i<=B;)
+       {
+           
+           a=String.valueOf(i);
+           sum=sum(a);
+           square=square(a);
+           if(i>A)
+           {
+           chkprev=chk1;
+         //  System.out.println("A:"+i);
+           }
+           chk1=isPrime(sum);
+           chk2=isPrime(square);
+           if(chkprev==false)
+           {
+               if(i%10>(i-1)%10)
+               {
+                   i+=2;
+                 //  System.out.println("B:"+i);
+               }
+               else
+                   i++;
+               
+           }
+           else
+           {
+            //   System.out.println("C:"+i);
+               i++;
+              
+           }
+           
+           if(chk1==true&&chk2==true)
+           {
+               count[T-1]++;
+            //   System.out.println("D:"+(i-1));
+           }
+           
+       
+       }
+       
+       T--;
+       }
+       while(temp>0)
+       {
+       temp--;
+       System.out.println(count[temp]);
+       }
+   }
+     
+   
+}
